@@ -1,5 +1,6 @@
 package com.example.mindcraft_main;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -124,8 +125,10 @@ public class Complaint extends Fragment {
 
                        @Override
                        protected void onBindViewHolder(@NonNull ComplaintsViewHolder holder, final int position, @NonNull final complaint_details model) {
-                           holder.landmark.setText(model.getLandmark());
-                           holder.ward.setText(model.getWard_no());
+                           String land="Landmark:   "+model.getLandmark();
+                           String wd="Ward No:     "+model.getWard_no();
+                           holder.landmark.setText(land);
+                           holder.ward.setText(wd);
                            holder.description.setText(model.getProblem_description());
                            holder.type.setText(model.problem_type);
                            holder.date.setText(model.getDate());
@@ -133,6 +136,7 @@ public class Complaint extends Fragment {
                            final String id=snapshot.getId();
                            if(mUser!=null) {
                                final String uid = mUser.getUid();
+                               holder.change.setText("Start work");
                                holder.change.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View view) {
@@ -168,8 +172,10 @@ public class Complaint extends Fragment {
 
                        @Override
                        protected void onBindViewHolder(@NonNull ComplaintsViewHolder holder, int position, @NonNull final complaint_details model) {
-                           holder.landmark.setText(model.getLandmark());
-                           holder.ward.setText(model.getWard_no());
+                           String land="Landmark:   "+model.getLandmark();
+                           String wd="Ward No:     "+model.getWard_no();
+                           holder.landmark.setText(land);
+                           holder.ward.setText(wd);
                            holder.description.setText(model.getProblem_description());
                            holder.type.setText(model.problem_type);
                            holder.date.setText(model.getDate());
@@ -177,6 +183,7 @@ public class Complaint extends Fragment {
                            final String id=snapshot.getId();
                            if(mUser!=null) {
                                final String uid = mUser.getUid();
+                               holder.change.setText("Mark solved");
                                holder.change.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View view) {
@@ -213,8 +220,10 @@ public class Complaint extends Fragment {
 
                        @Override
                        protected void onBindViewHolder(@NonNull ComplaintsViewHolder holder, int position, @NonNull final complaint_details model) {
-                           holder.landmark.setText(model.getLandmark());
-                           holder.ward.setText(model.getWard_no());
+                           String land="Landmark:   "+model.getLandmark();
+                           String wd="Ward No:     "+model.getWard_no();
+                           holder.landmark.setText(land);
+                           holder.ward.setText(wd);
                            holder.description.setText(model.getProblem_description());
                            holder.type.setText(model.problem_type);
                            holder.date.setText(model.getDate());
@@ -222,6 +231,7 @@ public class Complaint extends Fragment {
                            final String id=snapshot.getId();
                            if(mUser!=null) {
                                final String uid = mUser.getUid();
+                               holder.change.setText("Problem has been completed Successfully");
                                holder.change.setOnClickListener(new View.OnClickListener() {
                                    @Override
                                    public void onClick(View view) {

@@ -2,11 +2,23 @@ package com.example.mindcraft_main;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,7 +57,11 @@ public class detected extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
-
+    private RecyclerView detectstore;
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mUser;
+    private FirestoreRecyclerAdapter adapter;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +75,52 @@ public class detected extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detected, container, false);
+        View view=inflater.inflate(R.layout.fragment_detected, container, false);
+
+        detectstore=view.findViewById(R.id.detected_list);
+        db=FirebaseFirestore.getInstance();
+        mAuth=FirebaseAuth.getInstance();
+        mUser=mAuth.getCurrentUser();
+
+        Query query = db.collection("Authorities").document(mUser.getUid()).collection("Self_detected_problems");
+
+        FirestoreRecyclerOptions<detection_details> options=new FirestoreRecyclerOptions.Builder<detection_details>()
+                .setQuery(query,detection_details.class)
+                .build();
+        adapter= new FirestoreRecyclerAdapter<detection_details, detections_view_holder>(options) {
+            @NonNull
+            @Override
+            public detections_view_holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view1=LayoutInflater.from(parent.getContext()).inflate(R.layout.detection_sample,parent,false);
+
+                return new detections_view_holder(view1);
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull detections_view_holder holder, int position, @NonNull detection_details model) {
+
+                holder.number.setText(model.getNumber_plate());
+                holder.time.setText(model.getTime_stamp());
+                holder.classes.setText(model.getDetected_classes());
+                holder.ward.setText(model.getWard_no());
+
+            }
+        };
+        detectstore.setLayoutManager(new LinearLayoutManager(getContext()));
+        detectstore.setAdapter(adapter);
+
+
+        return view;
+    }
+
+    private class detections_view_holder extends RecyclerView.ViewHolder {
+         private TextView ward,classes,time,number;
+        public detections_view_holder(@NonNull View itemView) {
+            super(itemView);
+            ward=itemView.findViewById(R.id.ward);
+            classes=itemView.findViewById(R.id.classes);
+            time=itemView.findViewById(R.id.time);
+            number=itemView.findViewById(R.id.number_plate);
+        }
     }
 }
