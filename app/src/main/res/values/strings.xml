@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Mindcraft_main</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="spinner_values">
+        <item>new</item>
+        <item>processing</item>
+    </string-array>
 </resources>

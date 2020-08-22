@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -36,7 +37,7 @@ public class user extends AppCompatActivity {
         mAuth= FirebaseAuth.getInstance();
         String uid=mAuth.getCurrentUser().getUid();
         db= FirebaseFirestore.getInstance();
-        DocumentReference doc=db.collection("users").document(uid);
+        DocumentReference doc=db.collection("Authorities").document(uid);
         doc.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -44,7 +45,8 @@ public class user extends AppCompatActivity {
                 {
                     DocumentSnapshot details=task.getResult();
                     name.setText(details.getString("Name"));
-                    area.setText(details.getString("Panchayat"));
+
+                    area.setText(details.getString("Local_body_name"));
                 }
                 else
                 {
