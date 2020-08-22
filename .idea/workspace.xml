@@ -10,11 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4647f716-c4de-45ae-8c9f-3f79456f59ea" name="Default Changelist" comment="first commit">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/complaint_sample.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/complaint_sample.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_complaint.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_complaint.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,10 +160,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="first commit" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="527" y="110" width="374" height="582" key="#com.intellij.ide.util.MemberChooser" timestamp="1598073850520">
+    <state x="407" y="118" width="374" height="582" key="#com.intellij.ide.util.MemberChooser" timestamp="1598093080922">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state x="527" y="110" width="374" height="582" key="#com.intellij.ide.util.MemberChooser/72.27.1294.741@72.27.1294.741" timestamp="1598073850520" />
+    <state x="407" y="118" width="374" height="582" key="#com.intellij.ide.util.MemberChooser/72.27.1294.741@72.27.1294.741" timestamp="1598093080922" />
     <state x="452" y="146" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598009583436">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
@@ -188,30 +188,30 @@
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="473" y="86" width="482" height="630" key="Github.UntrackedFilesDialog/72.27.1294.741@72.27.1294.741" timestamp="1598009880114" />
-    <state width="1248" height="354" key="GridCell.Tab.0.bottom" timestamp="1598073459539">
+    <state width="1248" height="354" key="GridCell.Tab.0.bottom" timestamp="1598094002679">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state width="1248" height="354" key="GridCell.Tab.0.bottom/72.27.1294.741@72.27.1294.741" timestamp="1598073459539" />
-    <state width="1248" height="354" key="GridCell.Tab.0.center" timestamp="1598073459537">
+    <state width="1248" height="354" key="GridCell.Tab.0.bottom/72.27.1294.741@72.27.1294.741" timestamp="1598094002679" />
+    <state width="1248" height="354" key="GridCell.Tab.0.center" timestamp="1598094002677">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state width="1248" height="354" key="GridCell.Tab.0.center/72.27.1294.741@72.27.1294.741" timestamp="1598073459537" />
-    <state width="1248" height="354" key="GridCell.Tab.0.left" timestamp="1598073459536">
+    <state width="1248" height="354" key="GridCell.Tab.0.center/72.27.1294.741@72.27.1294.741" timestamp="1598094002677" />
+    <state width="1248" height="354" key="GridCell.Tab.0.left" timestamp="1598094002676">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state width="1248" height="354" key="GridCell.Tab.0.left/72.27.1294.741@72.27.1294.741" timestamp="1598073459536" />
-    <state width="1248" height="354" key="GridCell.Tab.0.right" timestamp="1598073459538">
+    <state width="1248" height="354" key="GridCell.Tab.0.left/72.27.1294.741@72.27.1294.741" timestamp="1598094002676" />
+    <state width="1248" height="354" key="GridCell.Tab.0.right" timestamp="1598094002678">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state width="1248" height="354" key="GridCell.Tab.0.right/72.27.1294.741@72.27.1294.741" timestamp="1598073459538" />
+    <state width="1248" height="354" key="GridCell.Tab.0.right/72.27.1294.741@72.27.1294.741" timestamp="1598094002678" />
     <state x="314" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1598009985718">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
     <state x="314" y="133" width="800" height="535" key="Vcs.Push.Dialog.v2/72.27.1294.741@72.27.1294.741" timestamp="1598009985718" />
-    <state x="375" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1597984260008">
+    <state x="375" y="225" key="com.intellij.ide.util.TipDialog" timestamp="1598089276655">
       <screen x="72" y="27" width="1294" height="741" />
     </state>
-    <state x="375" y="225" key="com.intellij.ide.util.TipDialog/72.27.1294.741@72.27.1294.741" timestamp="1597984260008" />
+    <state x="375" y="225" key="com.intellij.ide.util.TipDialog/72.27.1294.741@72.27.1294.741" timestamp="1598089276655" />
     <state x="383" y="174" key="run.anything.popup" timestamp="1598008987085">
       <screen x="72" y="27" width="1294" height="741" />
     </state>

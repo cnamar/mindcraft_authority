@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -74,7 +76,6 @@ public class Complaint extends Fragment {
     public void setF(int f) {
         this.f = f;
     }
-
     int f;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -103,12 +104,73 @@ public class Complaint extends Fragment {
            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                if(adapterView.getItemAtPosition(i).equals("new"))
                {
-                   setF(0);
+                   Log.d("Tagimportant",String.valueOf(getF())+"ivide");
+                   Query query = db.collection("Authorities").document(mUser.getUid()).collection("Complaints").whereEqualTo("Status", 0);
+
+                   FirestoreRecyclerOptions<complaint_details> options=new FirestoreRecyclerOptions.Builder<complaint_details>()
+                           .setQuery(query,complaint_details.class)
+                           .build();
+                   adapter= new FirestoreRecyclerAdapter<complaint_details, ComplaintsViewHolder>(options) {
+
+                       @NonNull
+                       @Override
+                       public ComplaintsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                           View view1=LayoutInflater.from(parent.getContext()).inflate(R.layout.complaint_sample,parent,false);
+                           return new ComplaintsViewHolder(view1);
+                       }
+
+                       @Override
+                       protected void onBindViewHolder(@NonNull ComplaintsViewHolder holder, final int position, @NonNull final complaint_details model) {
+                           holder.landmark.setText(model.getLandmark());
+                           holder.ward.setText(model.getWard_no());
+                           holder.description.setText(model.getProblem_description());
+                           holder.type.setText(model.problem_type);
+                           holder.date.setText(model.getDate());
+
+
+                       }
+                   };
+                   complaintstore.setLayoutManager(new LinearLayoutManager(getContext()));
+                   complaintstore.setAdapter(adapter);
+                   adapter.startListening();
+
+
+
                }
                else
                {
-                   setF(1);
+                   Log.d("Tagimportant",String.valueOf(getF())+"ivide");
+                   Query query = db.collection("Authorities").document(mUser.getUid()).collection("Complaints").whereEqualTo("Status", 1);
+
+                   FirestoreRecyclerOptions<complaint_details> options=new FirestoreRecyclerOptions.Builder<complaint_details>()
+                           .setQuery(query,complaint_details.class)
+                           .build();
+                   adapter= new FirestoreRecyclerAdapter<complaint_details, ComplaintsViewHolder>(options) {
+                       @NonNull
+                       @Override
+                       public ComplaintsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                           View view1=LayoutInflater.from(parent.getContext()).inflate(R.layout.complaint_sample,parent,false);
+                           return new ComplaintsViewHolder(view1);
+                       }
+
+                       @Override
+                       protected void onBindViewHolder(@NonNull ComplaintsViewHolder holder, int position, @NonNull final complaint_details model) {
+                           holder.landmark.setText(model.getLandmark());
+                           holder.ward.setText(model.getWard_no());
+                           holder.description.setText(model.getProblem_description());
+                           holder.type.setText(model.problem_type);
+                           holder.date.setText(model.getDate());
+
+                       }
+                   };
+                   complaintstore.setLayoutManager(new LinearLayoutManager(getContext()));
+                   complaintstore.setAdapter(adapter);
+
+                   adapter.startListening();
+
+
                }
+
            }
 
            @Override
@@ -116,51 +178,14 @@ public class Complaint extends Fragment {
 
            }
        });
+    return view;
 
-
-        Query query = db.collection("Authorities").document(mUser.getUid()).collection("Complaints").whereEqualTo("Status", getF());
-
-        FirestoreRecyclerOptions<complaint_details> options=new FirestoreRecyclerOptions.Builder<complaint_details>()
-                        .setQuery(query,complaint_details.class)
-                        .build();
-                adapter= new FirestoreRecyclerAdapter<complaint_details, ComplaintsViewHolder>(options) {
-                    @NonNull
-                    @Override
-                    public ComplaintsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                       View view1=LayoutInflater.from(parent.getContext()).inflate(R.layout.complaint_sample,parent,false);
-                       return new ComplaintsViewHolder(view1);
-                    }
-
-                    @Override
-                    protected void onBindViewHolder(@NonNull ComplaintsViewHolder holder, int position, @NonNull complaint_details model) {
-                        holder.landmark.setText(model.getLandmark());
-                        holder.ward.setText(model.getWard_no());
-                        holder.description.setText(model.getProblem_description());
-                        holder.type.setText(model.problem_type);
-
-                    }
-                };
-             complaintstore.setLayoutManager(new LinearLayoutManager(getContext()));
-             complaintstore.setAdapter(adapter);
-
-
-
-        return view;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-    }
 
     private class ComplaintsViewHolder extends RecyclerView.ViewHolder{
-        private TextView type,description,ward,landmark,time,number;
+        private TextView type,description,ward,landmark,time,date;
+        Button change;
 
         public ComplaintsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -169,7 +194,10 @@ public class Complaint extends Fragment {
             ward=itemView.findViewById(R.id.ward);
             landmark=itemView.findViewById(R.id.landmark);
             time=itemView.findViewById(R.id.time);
-            number=itemView.findViewById(R.id.number);
+            date=itemView.findViewById(R.id.date);
+            change=itemView.findViewById(R.id.button);
+
         }
     }
+
 }

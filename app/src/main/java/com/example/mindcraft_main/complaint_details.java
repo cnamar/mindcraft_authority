@@ -66,9 +66,34 @@ public class complaint_details {
     }
 
     int Status;
-    String District,Landmark,Panchayat,Time,Ward_no,problem_description,problem_type;
+    String District;
+    String Landmark;
+    String Panchayat;
+    String Time;
+    String Ward_no;
+    String problem_description;
+    String problem_type;
+
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String date) {
+        Date = date;
+    }
+
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
+    }
+
+    String Date;
+    String UID;
     private complaint_details(){};
-    private complaint_details(String District,String Landmark,String Panchayat,String Time,String Ward_no,String problem_description,String problem_type,int Status)
+    private complaint_details(String District,String Landmark,String Panchayat,String Time,String Ward_no,String problem_description,String problem_type,int Status,String Date,String UID)
     {
         this.District=District;
         this.Landmark=Landmark;
@@ -78,6 +103,10 @@ public class complaint_details {
         this.problem_description=problem_description;
         this.problem_type=problem_type;
         this.Status=Status;
+        this.Date=Date;
+        this.UID=UID;
+
+
     }
 
 }
