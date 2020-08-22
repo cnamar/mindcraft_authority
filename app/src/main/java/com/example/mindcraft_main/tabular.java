@@ -13,7 +13,6 @@ public class tabular extends AppCompatActivity {
     PagerAdapter adapter;
     Complaint complaint;
     detected detect;
-    solved solved;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,10 +58,9 @@ public class tabular extends AppCompatActivity {
     {
         adapter = new PagerAdapter(getSupportFragmentManager());
        complaint=new Complaint();
-        solved=new solved();
+
         detect=new detected();
         adapter.addFragment(complaint,"CALLS");
-        adapter.addFragment(solved,"CHAT");
         adapter.addFragment(detect,"CONTACTS");
         viewPager.setAdapter(adapter);
     }

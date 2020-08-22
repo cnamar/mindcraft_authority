@@ -5,5 +5,6 @@
     <string-array name="spinner_values">
         <item>new</item>
         <item>processing</item>
+        <item>solved</item>
     </string-array>
 </resources>

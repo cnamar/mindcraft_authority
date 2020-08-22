@@ -25,6 +25,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Complaint#newInstance} factory method to
@@ -104,7 +107,7 @@ public class Complaint extends Fragment {
            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                if(adapterView.getItemAtPosition(i).equals("new"))
                {
-                   Log.d("Tagimportant",String.valueOf(getF())+"ivide");
+
                    Query query = db.collection("Authorities").document(mUser.getUid()).collection("Complaints").whereEqualTo("Status", 0);
 
                    FirestoreRecyclerOptions<complaint_details> options=new FirestoreRecyclerOptions.Builder<complaint_details>()
@@ -126,7 +129,17 @@ public class Complaint extends Fragment {
                            holder.description.setText(model.getProblem_description());
                            holder.type.setText(model.problem_type);
                            holder.date.setText(model.getDate());
-
+                           DocumentSnapshot snapshot=getSnapshots().getSnapshot(position);
+                           final String id=snapshot.getId();
+                           if(mUser!=null) {
+                               final String uid = mUser.getUid();
+                               holder.change.setOnClickListener(new View.OnClickListener() {
+                                   @Override
+                                   public void onClick(View view) {
+                                       changestatus(uid,id);
+                                   }
+                               });
+                           }
 
                        }
                    };
@@ -137,10 +150,10 @@ public class Complaint extends Fragment {
 
 
                }
-               else
+               else if(adapterView.getItemAtPosition(i).equals("processing"))
                {
-                   Log.d("Tagimportant",String.valueOf(getF())+"ivide");
-                   Query query = db.collection("Authorities").document(mUser.getUid()).collection("Complaints").whereEqualTo("Status", 1);
+
+                   final Query query = db.collection("Authorities").document(mUser.getUid()).collection("Complaints").whereEqualTo("Status", 1);
 
                    FirestoreRecyclerOptions<complaint_details> options=new FirestoreRecyclerOptions.Builder<complaint_details>()
                            .setQuery(query,complaint_details.class)
@@ -160,6 +173,19 @@ public class Complaint extends Fragment {
                            holder.description.setText(model.getProblem_description());
                            holder.type.setText(model.problem_type);
                            holder.date.setText(model.getDate());
+                           DocumentSnapshot snapshot=getSnapshots().getSnapshot(position);
+                           final String id=snapshot.getId();
+                           if(mUser!=null) {
+                               final String uid = mUser.getUid();
+                               holder.change.setOnClickListener(new View.OnClickListener() {
+                                   @Override
+                                   public void onClick(View view) {
+                                       updatestatus(uid,id);
+                                   }
+                               });
+                           }
+
+
 
                        }
                    };
@@ -169,6 +195,49 @@ public class Complaint extends Fragment {
                    adapter.startListening();
 
 
+               }
+               else
+               {
+                   final Query query = db.collection("Authorities").document(mUser.getUid()).collection("Complaints").whereEqualTo("Status", 2);
+
+                   FirestoreRecyclerOptions<complaint_details> options=new FirestoreRecyclerOptions.Builder<complaint_details>()
+                           .setQuery(query,complaint_details.class)
+                           .build();
+                   adapter= new FirestoreRecyclerAdapter<complaint_details, ComplaintsViewHolder>(options) {
+                       @NonNull
+                       @Override
+                       public ComplaintsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                           View view1=LayoutInflater.from(parent.getContext()).inflate(R.layout.complaint_sample,parent,false);
+                           return new ComplaintsViewHolder(view1);
+                       }
+
+                       @Override
+                       protected void onBindViewHolder(@NonNull ComplaintsViewHolder holder, int position, @NonNull final complaint_details model) {
+                           holder.landmark.setText(model.getLandmark());
+                           holder.ward.setText(model.getWard_no());
+                           holder.description.setText(model.getProblem_description());
+                           holder.type.setText(model.problem_type);
+                           holder.date.setText(model.getDate());
+                           DocumentSnapshot snapshot=getSnapshots().getSnapshot(position);
+                           final String id=snapshot.getId();
+                           if(mUser!=null) {
+                               final String uid = mUser.getUid();
+                               holder.change.setOnClickListener(new View.OnClickListener() {
+                                   @Override
+                                   public void onClick(View view) {
+                                       updatestatus(uid,id);
+                                   }
+                               });
+                           }
+
+
+
+                       }
+                   };
+                   complaintstore.setLayoutManager(new LinearLayoutManager(getContext()));
+                   complaintstore.setAdapter(adapter);
+
+                   adapter.startListening();
                }
 
            }
@@ -199,5 +268,25 @@ public class Complaint extends Fragment {
 
         }
     }
+    public void changestatus(String u,String d)
+    {
+        FirebaseFirestore db1;
+        db1=FirebaseFirestore.getInstance();
+        final Map<String,Object> data=new HashMap<>();
+        data.put("Status",1);
+        db1.collection("Authorities").document(u).collection("Complaints").document(d)
+                .update(data);
+    }
+    public void updatestatus(String u,String d)
+    {
+        FirebaseFirestore db2;
+        db2=FirebaseFirestore.getInstance();
+        final Map<String,Object> data=new HashMap<>();
+        data.put("Status",2);
+        db2.collection("Authorities").document(u).collection("Complaints").document(d)
+                .update(data);
+    }
+
+
 
 }
