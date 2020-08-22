@@ -98,7 +98,24 @@ public class Complaint extends Fragment {
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(getContext(),R.array.spinner_values,android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter1);
+       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           @Override
+           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+               if(adapterView.getItemAtPosition(i).equals("new"))
+               {
+                   setF(0);
+               }
+               else
+               {
+                   setF(1);
+               }
+           }
 
+           @Override
+           public void onNothingSelected(AdapterView<?> adapterView) {
+
+           }
+       });
 
 
         Query query = db.collection("Authorities").document(mUser.getUid()).collection("Complaints").whereEqualTo("Status", getF());
